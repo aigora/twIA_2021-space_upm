@@ -6,7 +6,7 @@
 
 [Nombres, apellidos, y usuario GitHub de los integrantes del equipo.]
 Lucas Gómez Velayos Lucas-Go-Vel (Puede aparecer también como Pigamer37)
-Cristina Boned Juncal Crisboned 
+Cristina Boned Juncal "Crisboned" 
 
 ## Objetivos del trabajo
 
