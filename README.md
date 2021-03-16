@@ -5,7 +5,8 @@
 ## Integrantes del equipo
 
 [Nombres, apellidos, y usuario GitHub de los integrantes del equipo.]
-Lucas Gómez Velayos Lucas-Go-Vel (Puede aparecer también como Pigamer37
+Lucas Gómez Velayos Lucas-Go-Vel (Puede aparecer también como Pigamer37)
+Iker Castiella Aguirrezabala "Ikercasti"
 
 ## Objetivos del trabajo
 
