@@ -5,6 +5,7 @@
 ## Integrantes del equipo
 
 [Nombres, apellidos, y usuario GitHub de los integrantes del equipo.]
+Lucas Gómez Velayos Lucas-Go-Vel
 
 ## Objetivos del trabajo
 
