@@ -7,8 +7,7 @@
 [Nombres, apellidos, y usuario GitHub de los integrantes del equipo.]
 Lucas Gómez Velayos Lucas-Go-Vel (Puede aparecer también como Pigamer37)
 Iker Castiella Aguirrezabala "Ikercasti"
-Daniel fuertes González, Daniel
-Pablo Garrudo Delgado "Garrudo-404"
+Pablo Garrudo Delgado Garrudo-404
 
 ## Objetivos del trabajo
 
