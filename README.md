@@ -6,10 +6,7 @@
 
 [Nombres, apellidos, y usuario GitHub de los integrantes del equipo.]
 Lucas Gómez Velayos Lucas-Go-Vel (Puede aparecer también como Pigamer37)
-<<<<<<< Updated upstream
 Iker Castiella Aguirrezabala "Ikercasti"
-=======
->>>>>>> Stashed changes
 
 ## Objetivos del trabajo
 
