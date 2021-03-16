@@ -6,12 +6,16 @@
 
 [Nombres, apellidos, y usuario GitHub de los integrantes del equipo.]
 Lucas Gómez Velayos Lucas-Go-Vel (Puede aparecer también como Pigamer37)
-<<<<<<< Updated upstream
 Iker Castiella Aguirrezabala "Ikercasti"
-Cristina Boned Juncal "Crisboned" 
+<<<<<<< HEAD
+Cristina Boned Juncal "Crisboned"1.0
 
 =======
 >>>>>>> Stashed changes
+=======
+Daniel fuertes González, Daniel
+Pablo Garrudo Delgado "Garrudo-404"
+>>>>>>> 0a936d20ddafdf46f53809f70920154eb084f82e
 
 ## Objetivos del trabajo
 
