@@ -1,6 +1,6 @@
-# [Título del trabajo]
+# [Coche teledirigido con corrección]
 
-[Descripción breve del proyecto a realizar (2-3 frases).]
+Coche teledirigido remotamente, que corrija la trayectoria del usuario en base a los obstáculos que detecte.
 
 ## Integrantes del equipo
 
