@@ -1,16 +1,16 @@
 #include <stdio.h>
 #include <string.h>
-#include "SerialClass.h"/*Necesitamos tener todos descargada e implementada esta librería, os iré comentando qué hay
+#include "SerialClass.h"/*Necesitamos tener todos descargada e implementada esta librerÃ­a, os irÃ© comentando quÃ© hay
 que hacer para lograrlo*/
 
 int main() {
-	char puerto[] = "COM5";//así podemos cambiar el puerto con facilidad
-	char Salida[200], Entrada[200], final[200];//String que se envía, que se recive, y la que usamos para printear
-	int bytes;//así podemos contar el número de bytes y "cerrar" la cadena que recibimos
+	char puerto[] = "COM5";//asÃ­ podemos cambiar el puerto con facilidad
+	char Salida[200], Entrada[200], final[200];//String que se envÃ­a, que se recive, y la que usamos para printear
+	int bytes;//asÃ­ podemos contar el nÃºmero de bytes y "cerrar" la cadena que recibimos
 
 	Serial* Arduino = new Serial((char*)puerto);//Configura el puerto
 	if (Arduino->IsConnected())
-		printf("Arduino conectado");//Nos avisa si está conectada
+		printf("Arduino conectado");//Nos avisa si estÃ¡ conectada
 
 	while(Arduino->IsConnected()){
 		printf("\nEscriba mensaje a enviar:");
