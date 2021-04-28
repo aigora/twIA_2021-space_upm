@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <string.h>
-#include "SerialClass.h"/*Necesitamos tener todos descargada e implementada esta librería, os iré comentando qué hay
-que hacer para lograrlo*/
+#include "SerialClass.h"
+#include "SerialClass.cpp"
+using namespace std;
 
 int main() {
 	char puerto[] = "COM5";//así podemos cambiar el puerto con facilidad
