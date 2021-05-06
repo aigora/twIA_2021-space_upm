@@ -9,19 +9,19 @@ int main()
 	int bytesRecibidos;
 	char BufferEntrada[200];
 	Arduino = new Serial((char*)puerto); // Crea conexión lógica con Arduino
-while (Arduino->IsConnected())
-{
-	
 
-	bytesRecibidos = Arduino->ReadData(BufferEntrada, sizeof(char) * 180);
-
-	if (bytesRecibidos != -1) // Lectura de mensaje desde el puerto
+	while (Arduino->IsConnected())
 	{
-		BufferEntrada[bytesRecibidos] = '\0';
-		printf("Recibidos %d bytes: %s\n", bytesRecibidos, BufferEntrada);
-	}
-	else {
-		printf("No se ha recibido nada\n");
-		Sleep(150);
+		bytesRecibidos = Arduino->ReadData(BufferEntrada, sizeof(char) * 180);
+
+		if (bytesRecibidos != -1) // Lectura de mensaje desde el puerto
+		{
+			BufferEntrada[bytesRecibidos] = '\0';
+			printf("Recibidos %d bytes: %s\n", bytesRecibidos, BufferEntrada);
+		}
+		else {
+			printf("No se ha recibido nada\n");
+		}
+		Sleep(111);
 	}
 }
