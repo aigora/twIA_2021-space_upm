@@ -1,29 +1,42 @@
 #include <Servo.h>
 Servo upm;
 
+#define servo 2
 #define trig 7
 #define echo 6
+#define SensIR 3
 
 int X = 0;
 int T_bucle = 100;
+int IR_signal;
+int position_X;
+int angulo;
 long distancia;
 long medirDistancia();
 unsigned long Tiempo = millis();
 
 void setup() {
 Serial.begin(9600);
-upm.attach(2);
+upm.attach(servo);
 pinMode(echo,INPUT);
 pinMode(trig,OUTPUT);
+pinMode(SensIR,INPUT);
 while(!Serial) { ; }
 }
 
 void loop() {
   
   if(millis()-Tiempo>=T_bucle){
+    IR_signal = digitalRead(SensIR);
+    if(IR_signal==1){
+      Serial.println("No IR");
+    }
+    else{
+      Serial.println("IR detectados");
+    }
     distancia=medirDistancia();
-    int position_X = analogRead(X);
-    int angulo = map(position_X, 0, 1023, 0, 180);
+    position_X = analogRead(X);
+    angulo = map(position_X, 0, 1023, 0, 180);
     Serial.println(distancia);
     Serial.println(angulo);
     upm.write(angulo);
