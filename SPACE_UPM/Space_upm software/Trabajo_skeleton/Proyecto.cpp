@@ -7,21 +7,21 @@ int main()
 	Serial* Arduino;
 	char puerto[] = "COM3";
 	int bytesRecibidos;
-	char BufferEntrada[300];
-Arduino = new Serial((char*)puerto); // Crea conexión lógica con Arduino
-while (Arduino->IsConnected())
-{
-	
+	char BufferEntrada[200];
+	Arduino = new Serial((char*)puerto); // Crea conexión lógica con Arduino
 
-	bytesRecibidos = Arduino->ReadData(BufferEntrada, sizeof(char) * 180);
-
-	if (bytesRecibidos != -1) // Lectura de mensaje desde el puerto
+	while (Arduino->IsConnected())
 	{
-		BufferEntrada[bytesRecibidos - 1] = '\0';
-		printf("Recibidos %d bytes: %s\n", bytesRecibidos, BufferEntrada);
+		bytesRecibidos = Arduino->ReadData(BufferEntrada, sizeof(char) * 180);
+
+		if (bytesRecibidos != -1) // Lectura de mensaje desde el puerto
+		{
+			BufferEntrada[bytesRecibidos] = '\0';
+			printf("Recibidos %d bytes: %s\n", bytesRecibidos, BufferEntrada);
+		}
+		else {
+			printf("No se ha recibido nada\n");
+		}
+		Sleep(111);
 	}
-	else
-		printf("No se ha recibido nada\n");
-	Sleep(150);
-}
 }
