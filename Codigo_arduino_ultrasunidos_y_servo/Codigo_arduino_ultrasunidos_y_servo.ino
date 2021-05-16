@@ -42,7 +42,7 @@ void setup() {
 }
 
 void loop() {
-  char inp;
+  char inp=0;
   if(millis()-Tiempo>=T_bucle){
     if( Serial.available()> 0) {
       inp=Serial.read();
@@ -69,35 +69,27 @@ void loop() {
       }
     }
     distancia=medirDistancia();
-    if (distancia >= 25) {
-      digitalWrite(pinIN3, HIGH);
-      digitalWrite(pinIN4, LOW);
-      analogWrite(pinENA, 200);
-      digitalWrite(pinIN3, HIGH);
-      digitalWrite(pinIN4, LOW);
-      analogWrite(pinENB, 200);
-    } 
-    else if (10 <= distancia && distancia < 25) {
-      digitalWrite(pinIN3, HIGH);
-      digitalWrite(pinIN4, LOW);
-      analogWrite(pinENA, 125);
-      digitalWrite(pinIN3, HIGH);
-      digitalWrite(pinIN4, LOW);
-      analogWrite(pinENB, 125);
-    } 
-    else if (distancia <= 10) {
-      analogWrite(pinIN1, LOW);
-      analogWrite(pinIN2, LOW);
-      analogWrite(pinENA, 0);
-      digitalWrite(pinIN3, LOW);
-      digitalWrite(pinIN4, LOW);
-      analogWrite(pinENB, 0);
+    if (inp=='w'){
+      if (distancia >= 25) {
+        motorDelante(MotorA, 200);
+        motorDelante(MotorB, 200);
+      } 
+      else if (10 <= distancia && distancia < 25) {
+        motorDelante(MotorA, 125);
+        motorDelante(MotorB, 125);
+      } 
+      else if (distancia <= 10) {
+        motorParar(MotorA);
+        motorParar(MotorB);
+      }
     }
-    position_X = analogRead(X);
-    angulo = map(position_X, 0, 1023, 0, 180);
+    else if (inp=='s'){
+      motorParar(MotorA);
+      motorParar(MotorB);
+    }
+    else if(inp=='a' 
     Serial.println(distancia);
     Serial.println(angulo);
-    upm.write(angulo);
   }
 }
 long medirDistancia() {
@@ -133,7 +125,7 @@ void motorAtras(int Motor[3], int vel){
   digitalWrite(Motor[2], HIGH);
   analogWrite(Motor[0], vel);
 }
-void motorParar(int Motor[3], int vel){
+void motorParar(int Motor[3]){
   digitalWrite(Motor[1], LOW);
   digitalWrite(Motor[2], LOW);
   analogWrite(Motor[0], 0);
