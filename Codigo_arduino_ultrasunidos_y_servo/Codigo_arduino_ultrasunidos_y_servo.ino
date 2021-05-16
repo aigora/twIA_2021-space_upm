@@ -44,6 +44,10 @@ void setup() {
 void loop() {
   
   if(millis()-Tiempo>=T_bucle){
+    if( Serial.available()> 0) {
+      char inp=Serial.read();
+      Serial.print(inp);
+    }
     IR_signalD = digitalRead(SensIRD);
     IR_signalI = digitalRead(SensIRI);
     if(IR_signalD==1){
