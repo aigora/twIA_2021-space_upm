@@ -15,11 +15,9 @@ Servo upm;
 
 int MotorA[3]={pinENA, pinIN1, pinIN2};
 int MotorB[3]={pinENB, pinIN3, pinIN4};
-int X = 0;
 int T_bucle = 100;
 int IR_signalD;
 int IR_signalI;
-int position_X;
 int angulo;
 long distancia;
 long medirDistancia();
@@ -84,12 +82,13 @@ void loop() {
       }
     }
     else if (inp=='s'){
-      motorParar(MotorA);
-      motorParar(MotorB);
+      motorAtras(MotorA, 200);
+      motorAtras(MotorB, 200);
     }
-    else if(inp=='a' 
+    else if(inp=='a'||inp=='d'){
+        girar(inp);
+    }
     Serial.println(distancia);
-    Serial.println(angulo);
   }
 }
 long medirDistancia() {
