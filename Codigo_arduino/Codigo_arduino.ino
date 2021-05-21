@@ -2,16 +2,16 @@
 Servo upm;
 
 #define servo 2
-#define trig 5
-#define echo 4
 #define SensIRD 3
-#define SensIRI 12
-#define pinENA 6
+#define SensIRI 4
+#define echo 5
+#define trig 6
 #define pinIN1 7
 #define pinIN2 8
-#define pinIN3 9
-#define pinIN4 10
+#define pinENA 9
+#define pinIN3 10
 #define pinENB 11
+#define pinIN4 12
 
 int MotorA[3]={pinENA, pinIN1, pinIN2};
 int MotorB[3]={pinENB, pinIN3, pinIN4};
@@ -48,20 +48,20 @@ void loop() {
     }
     IR_signalD = digitalRead(SensIRD);
     IR_signalI = digitalRead(SensIRI);
-    if(IR_signalD==1){
-      Serial.println("Sin línea Der");
+    if(IR_signalD==HIGH){
+      Serial.println("ZONA NEGRA DERECHA");
     }
     else{
-      Serial.println("Línea a la der");
+      Serial.println("ZONA BLANCA DERECHA");
       if (inp=='d'){
-        inp='w';  
+        inp='a';  
       }
     }
-    if(IR_signalI==1){
-      Serial.println("Sin línea Izq");
+    if(IR_signalI==HIGH){
+      Serial.println("ZONA NEGRA IZQUIERDA");
     }
     else{
-      Serial.println("Línea a la izq");
+      Serial.println("ZONA BLANCA IZQUIERDAD");
       if (inp=='a'){
         inp='w';  
       }
