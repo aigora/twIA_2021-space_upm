@@ -15,7 +15,20 @@ Servo upm;
 
 int MotorA[3]={pinENA, pinIN1, pinIN2};
 int MotorB[3]={pinENB, pinIN3, pinIN4};
+<<<<<<< Updated upstream:Codigo_arduino/Codigo_arduino.ino
 int T_bucle = 100;
+=======
+<<<<<<< Updated upstream:Codigo_arduino_ultrasunidos_y_servo/Codigo_arduino_ultrasunidos_y_servo.ino
+<<<<<<< Updated upstream:Codigo_arduino_ultrasunidos_y_servo/Codigo_arduino_ultrasunidos_y_servo.ino
+int X = 0;
+int T_bucle = 100;
+=======
+int T_bucle = 300;
+>>>>>>> Stashed changes:Codigo_arduino/Codigo_arduino.ino
+=======
+int T_bucle = 300;
+>>>>>>> Stashed changes:Codigo_arduino/Codigo_arduino.ino
+>>>>>>> Stashed changes:Codigo_arduino_ultrasunidos_y_servo/Codigo_arduino_ultrasunidos_y_servo.ino
 int IR_signalD;
 int IR_signalI;
 int angulo;
@@ -52,7 +65,15 @@ void loop() {
       Serial.println("ZONA NEGRA DERECHA");
     }
     else{
+<<<<<<< Updated upstream:Codigo_arduino/Codigo_arduino.ino
       Serial.println("ZONA BLANCA DERECHA");
+=======
+      Serial.println("ZONA BLANCA DER");
+<<<<<<< Updated upstream:Codigo_arduino_ultrasunidos_y_servo/Codigo_arduino_ultrasunidos_y_servo.ino
+>>>>>>> Stashed changes:Codigo_arduino/Codigo_arduino.ino
+=======
+>>>>>>> Stashed changes:Codigo_arduino/Codigo_arduino.ino
+>>>>>>> Stashed changes:Codigo_arduino_ultrasunidos_y_servo/Codigo_arduino_ultrasunidos_y_servo.ino
       if (inp=='d'){
         inp='a';  
       }
@@ -61,7 +82,15 @@ void loop() {
       Serial.println("ZONA NEGRA IZQUIERDA");
     }
     else{
+<<<<<<< Updated upstream:Codigo_arduino/Codigo_arduino.ino
       Serial.println("ZONA BLANCA IZQUIERDAD");
+=======
+      Serial.println("ZONA BLANCA IZQ");
+<<<<<<< Updated upstream:Codigo_arduino_ultrasunidos_y_servo/Codigo_arduino_ultrasunidos_y_servo.ino
+>>>>>>> Stashed changes:Codigo_arduino/Codigo_arduino.ino
+=======
+>>>>>>> Stashed changes:Codigo_arduino/Codigo_arduino.ino
+>>>>>>> Stashed changes:Codigo_arduino_ultrasunidos_y_servo/Codigo_arduino_ultrasunidos_y_servo.ino
       if (inp=='a'){
         inp='w';  
       }
@@ -88,6 +117,17 @@ void loop() {
     else if(inp=='a'||inp=='d'){
         girar(inp);
     }
+<<<<<<< Updated upstream:Codigo_arduino/Codigo_arduino.ino
+=======
+<<<<<<< Updated upstream:Codigo_arduino_ultrasunidos_y_servo/Codigo_arduino_ultrasunidos_y_servo.ino
+>>>>>>> Stashed changes:Codigo_arduino/Codigo_arduino.ino
+=======
+    else if(inp==' '){
+      motorParar(MotorA);
+      motorParar(MotorB);
+    }
+>>>>>>> Stashed changes:Codigo_arduino/Codigo_arduino.ino
+>>>>>>> Stashed changes:Codigo_arduino_ultrasunidos_y_servo/Codigo_arduino_ultrasunidos_y_servo.ino
     Serial.println(distancia);
   }
 }
