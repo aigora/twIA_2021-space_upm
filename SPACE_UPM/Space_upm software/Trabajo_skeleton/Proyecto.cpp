@@ -6,7 +6,7 @@
 int main()
 {
 	Serial* Arduino;
-	char puerto[] = "COM3", ch = 0, inp;
+	char puerto[] = "COM4", ch = 0, inp;
 	int bytesRecibidos;
 	char BufferEntrada[200];
 	Arduino = new Serial((char*)puerto); // Crea conexión lógica con Arduino
@@ -27,15 +27,6 @@ int main()
 				Arduino->WriteData(&ch, sizeof(char));
 				printf("%c\n", ch);
 				Sleep(100);
-				Arduino->ReadData(&inp, sizeof(char));
-				printf("%c\n", inp);
-				if (ch == inp)
-					printf("Misma señal\n");
-				else
-					printf("Señal distinta\n");
-				printf("--------------------------\n");
-				break;
-
 		default:
 			printf("Input incorrecto\n");
 			break;
@@ -45,7 +36,7 @@ int main()
 
 		if (bytesRecibidos != -1) // Lectura de mensaje desde el puerto
 		{
-			BufferEntrada[bytesRecibidos] = '\0';
+			BufferEntrada[bytesRecibidos-1] = '\0';
 			printf("Recibidos %d bytes: %s\n", bytesRecibidos, BufferEntrada);
 		}
 		else {
