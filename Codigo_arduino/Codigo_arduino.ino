@@ -22,7 +22,7 @@ int angulo;
 long distancia;
 char inp=0;
 long medirDistancia();
-unsigned long Tiempo;
+unsigned long Tiempo = millis();
 
 void setup() {
   Serial.begin(9600);
@@ -41,12 +41,13 @@ void setup() {
 }
 
 void loop() {
-  Tiempo = millis();
-  if(millis()-Tiempo>=T_bucle){
-    if( Serial.available()> 0) {
+  
+  if( Serial.available()> 0) {
       inp=Serial.read();
       Serial.print(inp);
     }
+  if(millis()-Tiempo>=T_bucle){
+    
     IR_signalD = digitalRead(SensIRD);
     IR_signalI = digitalRead(SensIRI);
     if(IR_signalD==HIGH){
@@ -63,8 +64,8 @@ void loop() {
     }
     else{
       Serial.println("ZONA BLANCA IZQ");
-      if (inp=='d'){
-        inp='a';  
+      if (inp=='a'){
+        inp='d';  
       }
     }
     distancia=medirDistancia();
