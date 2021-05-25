@@ -8,7 +8,7 @@ int main()
 	Serial* Arduino;
 	char puerto[] = "COM4", ch = 0, inp;
 	int bytesRecibidos;
-	char BufferEntrada[200];
+	char BufferEntrada[50];
 	Arduino = new Serial((char*)puerto); // Crea conexión lógica con Arduino
 
 	while (Arduino->IsConnected())
@@ -27,12 +27,13 @@ int main()
 				Arduino->WriteData(&ch, sizeof(char));
 				printf("%c\n", ch);
 				Sleep(100);
+				break;
 		default:
 			printf("Input incorrecto\n");
 			break;
 		}
 
-		bytesRecibidos = Arduino->ReadData(BufferEntrada, sizeof(char) * 180);
+		bytesRecibidos = Arduino->ReadData(BufferEntrada, sizeof(char) * 50);
 
 		if (bytesRecibidos != -1) // Lectura de mensaje desde el puerto
 		{
@@ -42,6 +43,6 @@ int main()
 		else {
 			printf("No se ha recibido nada\n");
 		}
-		Sleep(111);
+		Sleep(10);
 	}
 }
