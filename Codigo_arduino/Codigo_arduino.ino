@@ -20,8 +20,9 @@ int IR_signalD;
 int IR_signalI;
 int angulo;
 long distancia;
+char inp=0;
 long medirDistancia();
-unsigned long Tiempo = millis();
+unsigned long Tiempo;
 
 void setup() {
   Serial.begin(9600);
@@ -40,7 +41,7 @@ void setup() {
 }
 
 void loop() {
-  char inp=0;
+  Tiempo = millis();
   if(millis()-Tiempo>=T_bucle){
     if( Serial.available()> 0) {
       inp=Serial.read();
