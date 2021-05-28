@@ -46,6 +46,14 @@ void loop() {
       inp=Serial.read();
       Serial.print(inp);
     }
+
+   if (inp=='d'){  
+        upm.write(45);
+      }
+   if (inp=='a'){
+        upm.write(135);
+      }
+      
   if(millis()-Tiempo>=T_bucle){
     
     IR_signalD = digitalRead(SensIRD);
@@ -56,7 +64,7 @@ void loop() {
     else{
       Serial.println("ZONA BLANCA DER");
       if (inp=='d'){
-        inp='a';  
+        inp='a';
       }
     }
     if(IR_signalI==HIGH){
@@ -65,7 +73,7 @@ void loop() {
     else{
       Serial.println("ZONA BLANCA IZQ");
       if (inp=='a'){
-        inp='d';  
+        inp='d';
       }
     }
     distancia=medirDistancia();

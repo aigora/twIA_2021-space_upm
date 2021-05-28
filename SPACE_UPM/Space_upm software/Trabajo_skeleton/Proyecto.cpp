@@ -6,7 +6,7 @@
 int main()
 {
 	Serial* Arduino;
-	char puerto[] = "COM4", ch = 0, inp;
+	char puerto[] = "COM8", ch = 0, inp;
 	int bytesRecibidos;
 	char BufferEntrada[50];
 	Arduino = new Serial((char*)puerto); // Crea conexión lógica con Arduino
@@ -24,6 +24,7 @@ int main()
 			case 'S':
 			case 'd':
 			case 'D':
+			case ' ':
 				Arduino->WriteData(&ch, sizeof(char));
 				printf("%c\n", ch);
 				Sleep(100);
