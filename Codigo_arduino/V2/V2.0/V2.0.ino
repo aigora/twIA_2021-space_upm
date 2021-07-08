@@ -255,6 +255,17 @@ void loop() {
             //girar derecha (incluyendo cambio de orientación)
           }
         }
+      }else{
+        //secuencia de marcha atrás 
+          while((distanciaI<=10) && (distanciaD <= 10)){
+            re_cuadrado();
+          }
+          if(distanciaD > 10){
+            //girar derecha (incluyendo cambio de orientación)
+          }
+          else if(distanciaI > 10){
+            //girar izquierda (incluyendo cambio de orientación)
+          }
       }
   }
 }
