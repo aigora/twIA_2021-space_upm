@@ -22,7 +22,7 @@ int x_size = 49;
 int y_size = 49;
 int coord[] = {0, 0};
 int orientation = 0;
-int coord_med = {0, 0};
+int coord_med[] = {0, 0};
 long medirDistancia();
 unsigned long Tiempo = millis();
 
@@ -147,7 +147,7 @@ void loop() {
         Serial.write(coord_med[0]);
         Serial.write(coord_med[1]);
       }
-      if (distanciaF > 10) {
+      /*if (distanciaF > 10) {
         av_cuadrado();
         if((coord[0]>x_size)||(coord[1]>y_size)){
           re_cuadrado();
@@ -188,6 +188,73 @@ void loop() {
       }
       else if (distanciaI <= 10){
           //girar derecha (incluyendo cambio de orientación)
+      }*/
+
+      if (distanciaI > 10) {
+        //girar izquierda (incluyendo cambio de orientación)
+        av_cuadrado;
+        if((coord[0]>x_size)||(coord[1]>y_size)){
+          re_cuadrado();
+          if(distanciaD > 10){
+            //girar derecha (incluyendo cambio de orientación)
+          }
+          else if(distanciaI > 10){
+           //girar izquierda (incluyendo cambio de orientación)
+          }
+        }
+
+        if((coord[0]<0)||(coord[1]<0)){
+          re_cuadrado();
+          if(distanciaI > 10){
+           //girar izquierda (incluyendo cambio de orientación)
+          }
+          else if(distanciaD > 10){
+            //girar derecha (incluyendo cambio de orientación)
+          }
+        }
+      }else if (distanciaF > 10) {
+        av_cuadrado();
+        if((coord[0]>x_size)||(coord[1]>y_size)){
+          re_cuadrado();
+          if(distanciaD > 10){
+            //girar derecha (incluyendo cambio de orientación)
+          }
+          else if(distanciaI > 10){
+           //girar izquierda (incluyendo cambio de orientación)
+          }
+        }
+
+        if((coord[0]<0)||(coord[1]<0)){
+          re_cuadrado();
+          if(distanciaI > 10){
+           //girar izquierda (incluyendo cambio de orientación)
+          }
+          else if(distanciaD > 10){
+            //girar derecha (incluyendo cambio de orientación)
+          }
+        }
+      }else if (distanciaD > 10) {
+        //girar derecha (incluyendo cambio de orientación)
+        av_cuadrado;
+        if((coord[0]>x_size)||(coord[1]>y_size)){
+          re_cuadrado();
+          if(distanciaD > 10){
+            //girar derecha (incluyendo cambio de orientación)
+          }
+          else if(distanciaI > 10){
+           //girar izquierda (incluyendo cambio de orientación)
+          }
+        }
+
+        if((coord[0]<0)||(coord[1]<0)){
+          re_cuadrado();
+          if(distanciaI > 10){
+           //girar izquierda (incluyendo cambio de orientación)
+          }
+          else if(distanciaD > 10){
+            //girar derecha (incluyendo cambio de orientación)
+          }
+        }
       }
   }
 }
@@ -227,8 +294,8 @@ void av_cuadrado(){
   motorDelante(MotorA, 200);
   motorDelante(MotorB, 200);
    if(millis()-Tiempo>=T_bucle){
-      motorParar(int MotorA);
-      motorParar(int MotorB);
+      motorParar(MotorA);
+      motorParar(MotorB);
    }
    switch (orientation) {
           case 0:
@@ -257,8 +324,8 @@ void re_cuadrado(){
   motorAtras(MotorA, 200);
   motorAtras(MotorB, 200);
    if(millis()-Tiempo>=T_bucle){
-      motorParar(int MotorA);
-      motorParar(int MotorB);
+      motorParar(MotorA);
+      motorParar(MotorB);
    }
    switch (orientation) {
           case 0:
