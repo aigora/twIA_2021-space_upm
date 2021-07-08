@@ -195,6 +195,7 @@ void loop() {
         av_cuadrado;
         if((coord[0]>x_size)||(coord[1]>y_size)){
           re_cuadrado();
+          //girar derecha (incluyendo cambio de orientación)
           if(distanciaD > 10){
             //girar derecha (incluyendo cambio de orientación)
           }
@@ -238,6 +239,7 @@ void loop() {
         av_cuadrado;
         if((coord[0]>x_size)||(coord[1]>y_size)){
           re_cuadrado();
+          //girar derecha (incluyendo cambio de orientación)
           if(distanciaD > 10){
             //girar derecha (incluyendo cambio de orientación)
           }
