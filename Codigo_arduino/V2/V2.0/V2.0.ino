@@ -15,6 +15,8 @@
 int MotorA[3]={pinENA, pinIN1, pinIN2};
 int MotorB[3]={pinENB, pinIN3, pinIN4};
 int T_bucle = 300;
+int T_mov = 400;
+int T_giro = 500;
 long distanciaF;
 long distanciaI;
 long distanciaD;
@@ -196,9 +198,9 @@ void loop() {
         av_cuadrado;
         if((coord[0]>x_size)||(coord[1]>y_size)){
           re_cuadrado();
-          //girar derecha (incluyendo cambio de orientación)
+          girar_d();
           if(distanciaD > 10){
-            //girar derecha (incluyendo cambio de orientación)
+            girar_d();
           }
           else if(distanciaI > 10){
            //girar izquierda (incluyendo cambio de orientación)
@@ -211,7 +213,7 @@ void loop() {
            //girar izquierda (incluyendo cambio de orientación)
           }
           else if(distanciaD > 10){
-            //girar derecha (incluyendo cambio de orientación)
+            girar_d();
           }
         }
       }else if (distanciaF > 10) {
@@ -219,7 +221,7 @@ void loop() {
         if((coord[0]>x_size)||(coord[1]>y_size)){
           re_cuadrado();
           if(distanciaD > 10){
-            //girar derecha (incluyendo cambio de orientación)
+            girar_d();
           }
           else if(distanciaI > 10){
            //girar izquierda (incluyendo cambio de orientación)
@@ -232,17 +234,17 @@ void loop() {
            //girar izquierda (incluyendo cambio de orientación)
           }
           else if(distanciaD > 10){
-            //girar derecha (incluyendo cambio de orientación)
+            girar_d();
           }
         }
       }else if (distanciaD > 10) {
-        //girar derecha (incluyendo cambio de orientación)
+        girar_d();
         av_cuadrado;
         if((coord[0]>x_size)||(coord[1]>y_size)){
           re_cuadrado();
-          //girar derecha (incluyendo cambio de orientación)
+          girar_d();
           if(distanciaD > 10){
-            //girar derecha (incluyendo cambio de orientación)
+            girar_d();
           }
           else if(distanciaI > 10){
            //girar izquierda (incluyendo cambio de orientación)
@@ -255,7 +257,7 @@ void loop() {
            //girar izquierda (incluyendo cambio de orientación)
           }
           else if(distanciaD > 10){
-            //girar derecha (incluyendo cambio de orientación)
+            girar_d();
           }
         }
       }else{
@@ -264,7 +266,7 @@ void loop() {
             re_cuadrado();
           }
           if(distanciaD > 10){
-            //girar derecha (incluyendo cambio de orientación)
+            girar_d();
           }
           else if(distanciaI > 10){
             //girar izquierda (incluyendo cambio de orientación)
@@ -309,7 +311,7 @@ void av_cuadrado(){
   Tiempo = millis();
   motorDelante(MotorA, 200);
   motorDelante(MotorB, 200);
-   if(millis()-Tiempo>=T_bucle){
+   if(millis()-Tiempo>=T_mov){
       motorParar(MotorA);
       motorParar(MotorB);
    }
@@ -339,7 +341,7 @@ void re_cuadrado(){
   Tiempo = millis();
   motorAtras(MotorA, 200);
   motorAtras(MotorB, 200);
-   if(millis()-Tiempo>=T_bucle){
+   if(millis()-Tiempo>=T_mov){
       motorParar(MotorA);
       motorParar(MotorB);
    }
@@ -359,6 +361,59 @@ void re_cuadrado(){
           case 3:
             coord[0] = coord[0];
             coord[1] = coord[1]+1;
+          break;
+          default:
+            Serial.println("Error en or.");
+          break;
+      }
+}
+
+void girar_d(){
+  motorDelante(MotorA, 200);
+  motorAtras(MotorB, 200);
+  if(millis()-Tiempo>=T_giro){
+      motorParar(MotorA);
+      motorParar(MotorB);
+   }
+
+   switch (orientation) {
+          case 0:
+            orientation = 3;
+          break;
+          case 1:
+            orientation = 0;
+          break;
+          case 2:
+            orientation = 1;
+          break;
+          case 3:
+            orientation = 2;
+          break;
+          default:
+            Serial.println("Error en or.");
+          break;
+      }
+}
+void girar_i(){
+  motorDelante(MotorB, 200);
+  motorAtras(MotorA, 200);
+  if(millis()-Tiempo>=T_giro){
+      motorParar(MotorA);
+      motorParar(MotorB);
+   }
+
+   switch (orientation) {
+          case 0:
+            orientation = 1;
+          break;
+          case 1:
+            orientation = 2;
+          break;
+          case 2:
+            orientation = 3;
+          break;
+          case 3:
+            orientation = 0;
           break;
           default:
             Serial.println("Error en or.");
