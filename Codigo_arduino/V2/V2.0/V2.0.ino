@@ -27,6 +27,9 @@ long medirDistancia();
 unsigned long Tiempo = millis();
 
 void setup() {
+
+  Tiempo = millis();
+  
   Serial.begin(9600);
   pinMode(echoD,INPUT);
   pinMode(trigD,OUTPUT);
@@ -44,8 +47,6 @@ void setup() {
 }
 
 void loop() {
-  
-  Tiempo = millis();
   
   if(millis()-Tiempo>=T_bucle){
     
@@ -269,6 +270,8 @@ void loop() {
             //girar izquierda (incluyendo cambio de orientación)
           }
       }
+
+      Tiempo = millis();
   }
 }
 long medirDistancia(int echo, int trig) {
