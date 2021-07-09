@@ -1,16 +1,16 @@
 
-#define trigF 1
-#define echoF 2
-#define echoI 3
-#define trigI 4
-#define echoD 5
-#define trigD 6
-#define pinIN1 7
-#define pinIN2 8
-#define pinENA 9
-#define pinIN3 10
-#define pinENB 11
-#define pinIN4 12
+#define trigF 2
+#define echoF 3
+#define echoI 4
+#define trigI 5
+#define echoD 6
+#define trigD 7
+#define pinIN1 8
+#define pinIN2 9
+#define pinENA 10
+#define pinIN3 11
+#define pinENB 12
+#define pinIN4 13
 
 int MotorA[3]={pinENA, pinIN1, pinIN2};
 int MotorB[3]={pinENB, pinIN3, pinIN4};
@@ -26,7 +26,7 @@ int coord[] = {0, 0};
 int orientation = 0;
 int coord_med[] = {0, 0};
 long medirDistancia();
-unsigned long Tiempo = millis();
+unsigned long Tiempo;
 
 void setup() {
 
@@ -75,14 +75,12 @@ void loop() {
           break;
       }
       if (distanciaF > 10) {
-        Serial.println('0');
-        Serial.write(coord_med[0]);
-        Serial.write(coord_med[1]);
+        Serial.print('0');
+        Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       } 
       else if (distanciaF <= 10) {
-        Serial.println('X');
-        Serial.write(coord_med[0]);
-        Serial.write(coord_med[1]);
+        Serial.print('X');
+        Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       }
       
       distanciaI=medirDistancia(echoI, trigI);
@@ -108,14 +106,12 @@ void loop() {
           break;
       }
       if (distanciaI > 10) {
-        Serial.println('0');
-        Serial.write(coord_med[0]);
-        Serial.write(coord_med[1]);
+        Serial.print('0');
+        Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       } 
       else if (distanciaI <= 10) {
-        Serial.println('X');
-        Serial.write(coord_med[0]);
-        Serial.write(coord_med[1]);
+        Serial.print('X');
+        Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       }
 
       distanciaD=medirDistancia(echoD, trigD);
@@ -141,14 +137,12 @@ void loop() {
           break;
       }
       if (distanciaD > 10) {
-        Serial.println('0');
-        Serial.write(coord_med[0]);
-        Serial.write(coord_med[1]);
+        Serial.print('0');
+        Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       } 
       else if (distanciaD <= 10) {
-        Serial.println('X');
-        Serial.write(coord_med[0]);
-        Serial.write(coord_med[1]);
+        Serial.print('X');
+        Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       }
       /*if (distanciaF > 10) {
         av_cuadrado();

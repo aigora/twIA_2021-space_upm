@@ -5,13 +5,16 @@
 #include "SerialClass/SerialClass.h" // Biblioteca para acceder al puerto serie
 #define x_size 50
 #define y_size 50
-#define Tamano_com 3
+#define Tamano_com 200
 int main()
 {
 	Serial* Arduino;
-	char puerto[] = "COM8", ch = 0, inp;
+	char puerto[] = "COM3";
 	int bytesRecibidos;
+	int indexx = 0, indexy = 0;
+	char valor;
 	char BufferEntrada[Tamano_com];
+	char Salida[] = "Recibido \n";
 	Arduino = new Serial((char*)puerto); // Crea conexión lógica con Arduino
 
 	int i, j;
@@ -36,8 +39,13 @@ int main()
 
 			if (bytesRecibidos != -1) // Lectura de mensaje desde el puerto
 			{
-				BufferEntrada[bytesRecibidos - 1] = '\0';
+				BufferEntrada[bytesRecibidos] = '\0';
 				printf("Recibidos %d bytes: %s\n", bytesRecibidos, BufferEntrada);
+				valor = BufferEntrada[0];
+				indexx = BufferEntrada[1];
+				indexy = BufferEntrada[2];
+				matriz[indexy][indexx] = valor;
+				printf("%c en %d %d\n", valor, indexx, indexy);
 			}
 			else {
 				printf("No se ha recibido nada\n");
