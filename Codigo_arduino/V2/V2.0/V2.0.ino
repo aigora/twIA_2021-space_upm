@@ -194,7 +194,7 @@ void loop() {
       }*/
 
       if (distanciaI > 10) {
-        //girar izquierda (incluyendo cambio de orientación)
+        girar_i();
         av_cuadrado;
         if((coord[0]>x_size)||(coord[1]>y_size)){
           re_cuadrado();
@@ -203,14 +203,14 @@ void loop() {
             girar_d();
           }
           else if(distanciaI > 10){
-           //girar izquierda (incluyendo cambio de orientación)
+           girar_i();
           }
         }
 
         if((coord[0]<0)||(coord[1]<0)){
           re_cuadrado();
           if(distanciaI > 10){
-           //girar izquierda (incluyendo cambio de orientación)
+           girar_i();
           }
           else if(distanciaD > 10){
             girar_d();
@@ -224,14 +224,14 @@ void loop() {
             girar_d();
           }
           else if(distanciaI > 10){
-           //girar izquierda (incluyendo cambio de orientación)
+           girar_i();
           }
         }
 
         if((coord[0]<0)||(coord[1]<0)){
           re_cuadrado();
           if(distanciaI > 10){
-           //girar izquierda (incluyendo cambio de orientación)
+           girar_i();
           }
           else if(distanciaD > 10){
             girar_d();
@@ -247,14 +247,14 @@ void loop() {
             girar_d();
           }
           else if(distanciaI > 10){
-           //girar izquierda (incluyendo cambio de orientación)
+           girar_i();
           }
         }
 
         if((coord[0]<0)||(coord[1]<0)){
           re_cuadrado();
           if(distanciaI > 10){
-           //girar izquierda (incluyendo cambio de orientación)
+           girar_i();
           }
           else if(distanciaD > 10){
             girar_d();
@@ -269,7 +269,7 @@ void loop() {
             girar_d();
           }
           else if(distanciaI > 10){
-            //girar izquierda (incluyendo cambio de orientación)
+            girar_i();
           }
       }
 
