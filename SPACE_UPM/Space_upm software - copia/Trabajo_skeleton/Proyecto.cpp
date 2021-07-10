@@ -9,7 +9,7 @@
 
 typedef struct COORDENADAS {
 	int indexx = 0, indexy = 0;
-	char valor;
+	char valor = '0';
 }COORDENADAS;
 
 int main()
@@ -24,15 +24,17 @@ int main()
 
 	int i, j;
 	char matriz[y_size][x_size]; //declaración de matriz, pudiendo cambiar su tamaño (PENDIENTE DE IMPLEMENTACIÓN EN ARDUINO)
+	char mat2[y_size][x_size];
 
 	FILE* ar;
 	errno_t err;
 	err = fopen_s(&ar, "plano.txt", "w+");
-	if (err == 0) {
-
+	if ((err == 0)&&(ar!=NULL)) {
+		
 		for (i = 0; i < y_size; i++) { //rellenamos matriz con 0 (vacío)
 			for (j = 0; j < x_size; j++) {
 				matriz[i][j] = '0';
+				mat2[i][j] = '0';
 			}
 		}
 
@@ -51,20 +53,23 @@ int main()
 				coordenada.indexy = BufferEntrada[2];
 				matriz[coordenada.indexy][coordenada.indexx] = coordenada.valor;
 				printf("%c en %d %d\n", coordenada.valor, coordenada.indexx, coordenada.indexy);
+
+				if (matriz[coordenada.indexy][coordenada.indexx] != mat2[coordenada.indexy][coordenada.indexx]) {
+					for (i = 0; i < y_size; i++) { //ponemos la matriz en el archivo
+						for (j = 0; j < x_size; j++) {
+							fprintf_s(ar, "%c", matriz[i][j]);
+						}
+						fprintf_s(ar, "\n");
+					}
+					rewind(ar);
+					mat2[coordenada.indexy][coordenada.indexx] = matriz[coordenada.indexy][coordenada.indexx];
+				}
 			}
 			else {
 				printf("No se ha recibido nada\n");
 			}
 			Sleep(2000);
 		}
-
-		for (i = 0; i < y_size; i++) { //ponemos la matriz en el archivo
-			for (j = 0; j < x_size; j++) {
-				fprintf_s(ar, "%c", matriz[i][j]);
-			}
-			fprintf_s(ar, "\n");
-		}
-
 
 		fclose(ar);
 		if (fclose(ar) == NULL) 
