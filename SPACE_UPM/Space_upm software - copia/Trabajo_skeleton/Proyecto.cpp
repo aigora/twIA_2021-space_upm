@@ -6,13 +6,18 @@
 #define x_size 50
 #define y_size 50
 #define Tamano_com 200
+
+typedef struct COORDENADAS {
+	int indexx = 0, indexy = 0;
+	char valor;
+}COORDENADAS;
+
 int main()
 {
+	COORDENADAS coordenada;
 	Serial* Arduino;
 	char puerto[] = "COM3";
 	int bytesRecibidos;
-	int indexx = 0, indexy = 0;
-	char valor;
 	char BufferEntrada[Tamano_com];
 	char Salida[] = "Recibido \n";
 	Arduino = new Serial((char*)puerto); // Crea conexión lógica con Arduino
@@ -41,11 +46,11 @@ int main()
 			{
 				BufferEntrada[bytesRecibidos] = '\0';
 				printf("Recibidos %d bytes: %s\n", bytesRecibidos, BufferEntrada);
-				valor = BufferEntrada[0];
-				indexx = BufferEntrada[1];
-				indexy = BufferEntrada[2];
-				matriz[indexy][indexx] = valor;
-				printf("%c en %d %d\n", valor, indexx, indexy);
+				coordenada.valor = BufferEntrada[0];
+				coordenada.indexx = BufferEntrada[1];
+				coordenada.indexy = BufferEntrada[2];
+				matriz[coordenada.indexy][coordenada.indexx] = coordenada.valor;
+				printf("%c en %d %d\n", coordenada.valor, coordenada.indexx, coordenada.indexy);
 			}
 			else {
 				printf("No se ha recibido nada\n");
