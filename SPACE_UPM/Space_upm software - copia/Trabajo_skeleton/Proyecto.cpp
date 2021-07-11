@@ -38,6 +38,11 @@ int main()
 			}
 		}
 
+		if (Arduino->IsConnected()) {
+
+			bytesRecibidos = Arduino->ReadData(BufferEntrada, sizeof(char) * Tamano_com);
+			printf("Primeros %d bytes (probablemente error): %s\n", bytesRecibidos, BufferEntrada);
+		}
 
 		while (Arduino->IsConnected())
 		{
@@ -51,24 +56,28 @@ int main()
 				coordenada.valor = BufferEntrada[0];
 				coordenada.indexx = BufferEntrada[1];
 				coordenada.indexy = BufferEntrada[2];
-				matriz[coordenada.indexy][coordenada.indexx] = coordenada.valor;
-				printf("%c en %d %d\n", coordenada.valor, coordenada.indexx, coordenada.indexy);
+				
+				if ((coordenada.indexx >= 0) && (coordenada.indexx < x_size) && (coordenada.indexy >= 0) && (coordenada.indexy < y_size)) {
+					
+					matriz[coordenada.indexy][coordenada.indexx] = coordenada.valor;
+					printf("%c en %d %d\n", coordenada.valor, coordenada.indexx, coordenada.indexy);
 
-				if (matriz[coordenada.indexy][coordenada.indexx] != mat2[coordenada.indexy][coordenada.indexx]) {
-					for (i = 0; i < y_size; i++) { //ponemos la matriz en el archivo
-						for (j = 0; j < x_size; j++) {
-							fprintf_s(ar, "%c", matriz[i][j]);
+					if (matriz[coordenada.indexy][coordenada.indexx] != mat2[coordenada.indexy][coordenada.indexx]) {
+						for (i = 0; i < y_size; i++) { //ponemos la matriz en el archivo
+							for (j = 0; j < x_size; j++) {
+								fprintf_s(ar, "%c", matriz[i][j]);
+							}
+							fprintf_s(ar, "\n");
 						}
-						fprintf_s(ar, "\n");
+						rewind(ar);
+						mat2[coordenada.indexy][coordenada.indexx] = matriz[coordenada.indexy][coordenada.indexx];
 					}
-					rewind(ar);
-					mat2[coordenada.indexy][coordenada.indexx] = matriz[coordenada.indexy][coordenada.indexx];
 				}
 			}
 			else {
 				printf("No se ha recibido nada\n");
 			}
-			Sleep(2000);
+			Sleep(1000);
 		}
 
 		fclose(ar);
