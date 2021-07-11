@@ -45,8 +45,6 @@ void setup() {
   pinMode(pinIN2,OUTPUT);
   pinMode(pinIN3,OUTPUT);
   pinMode(pinIN4,OUTPUT);
-  while(!Serial) { ; }
-}
 
 void loop() {
   
@@ -87,7 +85,7 @@ void loop() {
       switch (orientation) {
           case 0:
             coord_med[0] = coord[0];
-            coord_med[1] = coord[1]+1;
+            coord_med[1] = coord[1]-1;
           break;
           case 1:
             coord_med[0] = coord[0]-1;
@@ -95,7 +93,7 @@ void loop() {
           break;
           case 2:
             coord_med[0] = coord[0];
-            coord_med[1] = coord[1]-1;
+            coord_med[1] = coord[1]+1;
           break;
           case 3:
             coord_med[0] = coord[0]+1;
@@ -118,7 +116,7 @@ void loop() {
       switch (orientation) {
           case 0:
             coord_med[0] = coord[0];
-            coord_med[1] = coord[1]-1;
+            coord_med[1] = coord[1]+1;
           break;
           case 1:
             coord_med[0] = coord[0]+1;
@@ -126,7 +124,7 @@ void loop() {
           break;
           case 2:
             coord_med[0] = coord[0];
-            coord_med[1] = coord[1]+1;
+            coord_med[1] = coord[1]-1;
           break;
           case 3:
             coord_med[0] = coord[0]-1;
