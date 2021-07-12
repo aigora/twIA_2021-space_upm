@@ -45,6 +45,8 @@ void setup() {
   pinMode(pinIN2,OUTPUT);
   pinMode(pinIN3,OUTPUT);
   pinMode(pinIN4,OUTPUT);
+  
+}
 
 void loop() {
   
@@ -367,7 +369,6 @@ void girar_d(){
       motorParar(MotorA);
       motorParar(MotorB);
    }
-
    switch (orientation) {
           case 0:
             orientation = 3;
@@ -386,7 +387,8 @@ void girar_d(){
           break;
       }
 }
-void girar_i(){
+
+void girar_i() {
   motorDelante(MotorB, 200);
   motorAtras(MotorA, 200);
   if(millis()-Tiempo>=T_giro){
