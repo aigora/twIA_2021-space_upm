@@ -5,15 +5,13 @@
 #define trigI 5
 #define echoD 6
 #define trigD 7
-#define pinIN1 8
-#define pinIN2 9
-#define pinENA 10
+#define pinIN1 9
+#define pinIN2 10
 #define pinIN3 11
-#define pinENB 12
-#define pinIN4 13
+#define pinIN4 12
 
-int MotorA[3]={pinENA, pinIN1, pinIN2};
-int MotorB[3]={pinENB, pinIN3, pinIN4};
+int MotorA[2]={pinIN1, pinIN2};
+int MotorB[2]={pinIN3, pinIN4};
 int T_bucle = 300;
 int T_mov = 400;
 int T_giro = 500;
@@ -39,8 +37,6 @@ void setup() {
   pinMode(trigF,OUTPUT);
   pinMode(echoI,INPUT);
   pinMode(trigI,OUTPUT);
-  pinMode(pinENA,OUTPUT);
-  pinMode(pinENB,OUTPUT);
   pinMode(pinIN1,OUTPUT);
   pinMode(pinIN2,OUTPUT);
   pinMode(pinIN3,OUTPUT);
@@ -82,7 +78,7 @@ void loop() {
         Serial.print('X');
         Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       }
-      
+      delay(1500);
       distanciaI=medirDistancia(echoI, trigI);
       switch (orientation) {
           case 0:
@@ -113,7 +109,7 @@ void loop() {
         Serial.print('X');
         Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       }
-
+      delay(1500);
       distanciaD=medirDistancia(echoD, trigD);
       switch (orientation) {
           case 0:
@@ -144,6 +140,7 @@ void loop() {
         Serial.print('X');
         Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       }
+      delay(1500);
       /*if (distanciaF > 10) {
         av_cuadrado();
         if((coord[0]>x_size)||(coord[1]>y_size)){
@@ -258,6 +255,9 @@ void loop() {
         //secuencia de marcha atrás 
           while((distanciaI<=10) && (distanciaD <= 10)){
             re_cuadrado();
+            distanciaF=medirDistancia(echoF, trigF);
+            distanciaI=medirDistancia(echoI, trigI);
+            distanciaD=medirDistancia(echoD, trigD);
           }
           if(distanciaD > 10){
             girar_d();
@@ -285,30 +285,26 @@ duration = pulseIn(echo, HIGH); //medimos el tiempo hasta que el pulso vuelve a 
 distanceCm = duration /(29.1*2); //convertimos la distancia en cm. No olvidemos dividirlo entre 2 también.(1s/340m=0.00291s/m)
 return distanceCm;
 }
-void motorDelante(int Motor[3], int vel){
+void motorDelante(int Motor[2]){
+  digitalWrite(Motor[0], HIGH);
+  digitalWrite(Motor[1], LOW);
+}
+void motorAtras(int Motor[2]){
+  digitalWrite(Motor[0], LOW);
   digitalWrite(Motor[1], HIGH);
-  digitalWrite(Motor[2], LOW);
-  analogWrite(Motor[0], vel);
 }
-void motorAtras(int Motor[3], int vel){
+void motorParar(int Motor[2]){
+  digitalWrite(Motor[0], LOW);
   digitalWrite(Motor[1], LOW);
-  digitalWrite(Motor[2], HIGH);
-  analogWrite(Motor[0], vel);
-}
-void motorParar(int Motor[3]){
-  digitalWrite(Motor[1], LOW);
-  digitalWrite(Motor[2], LOW);
-  analogWrite(Motor[0], 0);
 }
 
 void av_cuadrado(){
   Tiempo = millis();
-  motorDelante(MotorA, 200);
-  motorDelante(MotorB, 200);
-   if(millis()-Tiempo>=T_mov){
-      motorParar(MotorA);
-      motorParar(MotorB);
-   }
+  motorDelante(MotorA);
+  motorDelante(MotorB);
+  delay(T_mov);
+  motorParar(MotorA);
+  motorParar(MotorB);
    switch (orientation) {
           case 0:
             coord[0] = coord[0]+1;
@@ -333,12 +329,11 @@ void av_cuadrado(){
 }
 void re_cuadrado(){
   Tiempo = millis();
-  motorAtras(MotorA, 200);
-  motorAtras(MotorB, 200);
-   if(millis()-Tiempo>=T_mov){
-      motorParar(MotorA);
-      motorParar(MotorB);
-   }
+  motorAtras(MotorA);
+  motorAtras(MotorB);
+  delay(T_mov);
+  motorParar(MotorA);
+  motorParar(MotorB);
    switch (orientation) {
           case 0:
             coord[0] = coord[0]-1;
@@ -363,12 +358,12 @@ void re_cuadrado(){
 }
 
 void girar_d(){
-  motorDelante(MotorA, 200);
-  motorAtras(MotorB, 200);
-  if(millis()-Tiempo>=T_giro){
-      motorParar(MotorA);
-      motorParar(MotorB);
-   }
+  motorDelante(MotorA);
+  motorAtras(MotorB);
+  delay(T_giro);
+  motorParar(MotorA);
+  motorParar(MotorB);
+  
    switch (orientation) {
           case 0:
             orientation = 3;
@@ -389,12 +384,11 @@ void girar_d(){
 }
 
 void girar_i() {
-  motorDelante(MotorB, 200);
-  motorAtras(MotorA, 200);
-  if(millis()-Tiempo>=T_giro){
-      motorParar(MotorA);
-      motorParar(MotorB);
-   }
+  motorDelante(MotorB);
+  motorAtras(MotorA);
+  delay(T_giro);
+  motorParar(MotorA);
+  motorParar(MotorB);
 
    switch (orientation) {
           case 0:
