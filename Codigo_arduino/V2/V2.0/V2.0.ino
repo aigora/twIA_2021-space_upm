@@ -186,10 +186,14 @@ void loop() {
 
       if (distanciaI > 10) {
         girar_i();
-        av_cuadrado;
+        delay(500);
+        av_cuadrado();
+        delay(500);
         if((coord[0]>x_size)||(coord[1]>y_size)){
           re_cuadrado();
+          delay(500);
           girar_d();
+          delay(500);
           if(distanciaD > 10){
             girar_d();
           }
@@ -200,8 +204,11 @@ void loop() {
 
         if((coord[0]<0)||(coord[1]<0)){
           re_cuadrado();
-          if(distanciaI > 10){
-           girar_i();
+          delay(500);
+          girar_d();
+          delay(500);
+          if(distanciaF > 10){
+           av_cuadrado();
           }
           else if(distanciaD > 10){
             girar_d();
@@ -221,49 +228,91 @@ void loop() {
 
         if((coord[0]<0)||(coord[1]<0)){
           re_cuadrado();
-          if(distanciaI > 10){
-           girar_i();
+          if(distanciaD > 10){
+           girar_d();
           }
-          else if(distanciaD > 10){
-            girar_d();
+          else if(distanciaI > 10){
+            girar_i();
           }
         }
       }else if (distanciaD > 10) {
         girar_d();
-        av_cuadrado;
+        delay(500);
+        av_cuadrado();
+        delay(500);
         if((coord[0]>x_size)||(coord[1]>y_size)){
           re_cuadrado();
+          delay(500);
           girar_d();
-          if(distanciaD > 10){
-            girar_d();
-          }
-          else if(distanciaI > 10){
-           girar_i();
-          }
+          delay(500);
+          av_cuadrado();
         }
 
         if((coord[0]<0)||(coord[1]<0)){
           re_cuadrado();
-          if(distanciaI > 10){
-           girar_i();
-          }
-          else if(distanciaD > 10){
-            girar_d();
-          }
+          delay(500);
+          girar_d();
+          delay(500);
+          av_cuadrado();
         }
       }else{
         //secuencia de marcha atrás 
           while((distanciaI<=10) && (distanciaD <= 10)){
             re_cuadrado();
-            distanciaF=medirDistancia(echoF, trigF);
             distanciaI=medirDistancia(echoI, trigI);
             distanciaD=medirDistancia(echoD, trigD);
           }
           if(distanciaD > 10){
             girar_d();
+            delay(500);
+            av_cuadrado();
+            delay(500);
+          if((coord[0]>x_size)||(coord[1]>y_size)){
+            re_cuadrado();
+            delay(500);
+            girar_d();
+            delay(500);
+            av_cuadrado();
           }
+
+          if((coord[0]<0)||(coord[1]<0)){
+            re_cuadrado();
+            delay(500);
+            girar_d();
+            delay(500);
+            av_cuadrado();
+          }
+         }
           else if(distanciaI > 10){
             girar_i();
+            delay(500);
+            av_cuadrado();
+            delay(500);
+            if((coord[0]>x_size)||(coord[1]>y_size)){
+              re_cuadrado();
+              delay(500);
+              girar_d();
+              delay(500);
+              if(distanciaD > 10){
+              girar_d();
+              }
+              else if(distanciaI > 10){
+                girar_i();
+            }
+          }
+
+            if((coord[0]<0)||(coord[1]<0)){
+              re_cuadrado();
+              delay(500);
+              girar_d();
+              delay(500);
+              if(distanciaF > 10){
+                av_cuadrado();
+              }
+              else if(distanciaD > 10){
+                girar_d();
+              }
+            }
           }
       }
 
