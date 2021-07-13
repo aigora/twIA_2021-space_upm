@@ -19,7 +19,6 @@ int main()
 	char puerto[] = "COM3";
 	int bytesRecibidos;
 	char BufferEntrada[Tamano_com];
-	char Salida[] = "Recibido \n";
 	Arduino = new Serial((char*)puerto); // Crea conexión lógica con Arduino
 
 	int i, j;
