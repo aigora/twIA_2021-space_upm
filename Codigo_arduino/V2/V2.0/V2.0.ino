@@ -56,7 +56,7 @@ void loop() {
           break;
           case 1:
             coord_med[0] = coord[0];
-            coord_med[1] = coord[1]+1;
+            coord_med[1] = coord[1]-1;
           break;
           case 2:
             coord_med[0] = coord[0]-1;
@@ -64,7 +64,7 @@ void loop() {
           break;
           case 3:
             coord_med[0] = coord[0];
-            coord_med[1] = coord[1]-1;
+            coord_med[1] = coord[1]+1;
           break;
           default:
             Serial.println("Error en or.");
@@ -83,7 +83,7 @@ void loop() {
       switch (orientation) {
           case 0:
             coord_med[0] = coord[0];
-            coord_med[1] = coord[1]-1;
+            coord_med[1] = coord[1]+1;
           break;
           case 1:
             coord_med[0] = coord[0]-1;
@@ -91,7 +91,7 @@ void loop() {
           break;
           case 2:
             coord_med[0] = coord[0];
-            coord_med[1] = coord[1]+1;
+            coord_med[1] = coord[1]-1;
           break;
           case 3:
             coord_med[0] = coord[0]+1;
@@ -114,7 +114,7 @@ void loop() {
       switch (orientation) {
           case 0:
             coord_med[0] = coord[0];
-            coord_med[1] = coord[1]+1;
+            coord_med[1] = coord[1]-1;
           break;
           case 1:
             coord_med[0] = coord[0]+1;
@@ -122,7 +122,7 @@ void loop() {
           break;
           case 2:
             coord_med[0] = coord[0];
-            coord_med[1] = coord[1]-1;
+            coord_med[1] = coord[1]+1;
           break;
           case 3:
             coord_med[0] = coord[0]-1;
@@ -312,7 +312,7 @@ void av_cuadrado(){
           break;
           case 1:
             coord[0] = coord[0];
-            coord[1] = coord[1]+1;
+            coord[1] = coord[1]-1;
           break;
           case 2:
             coord[0] = coord[0]-1;
@@ -320,7 +320,7 @@ void av_cuadrado(){
           break;
           case 3:
             coord[0] = coord[0];
-            coord[1] = coord[1]-1;
+            coord[1] = coord[1]+1;
           break;
           default:
             Serial.println("Error en or.");
@@ -341,7 +341,7 @@ void re_cuadrado(){
           break;
           case 1:
             coord[0] = coord[0];
-            coord[1] = coord[1]-1;
+            coord[1] = coord[1]+1;
           break;
           case 2:
             coord[0] = coord[0]+1;
@@ -349,7 +349,7 @@ void re_cuadrado(){
           break;
           case 3:
             coord[0] = coord[0];
-            coord[1] = coord[1]+1;
+            coord[1] = coord[1]-1;
           break;
           default:
             Serial.println("Error en or.");
