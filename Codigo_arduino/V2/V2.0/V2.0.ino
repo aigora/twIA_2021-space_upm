@@ -20,9 +20,9 @@ long distanciaI;
 long distanciaD;
 int x_size = 49;
 int y_size = 49;
-int coord[2] = {0, 0};
+int coord[] = {0, 0};
 int orientation = 0;
-int coord_med[2] = {0, 0};
+int coord_med[] = {0, 0};
 long medirDistancia();
 unsigned long Tiempo;
 
