@@ -14,7 +14,7 @@ int MotorA[2]={pinIN1, pinIN2};
 int MotorB[2]={pinIN3, pinIN4};
 int T_bucle = 300;
 int T_mov = 400;
-int T_giro = 500;
+int T_giro = 600;
 long distanciaF;
 long distanciaI;
 long distanciaD;
@@ -70,11 +70,11 @@ void loop() {
             Serial.println("Error en or.");
           break;
       }
-      if (distanciaF > 10) {
+      if (distanciaF > 20) {
         Serial.print('0');
         Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       } 
-      else if (distanciaF <= 10) {
+      else if (distanciaF <= 20) {
         Serial.print('X');
         Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       }
@@ -101,11 +101,11 @@ void loop() {
             Serial.println("Error en or.");
           break;
       }
-      if (distanciaI > 10) {
+      if (distanciaI > 20) {
         Serial.print('0');
         Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       } 
-      else if (distanciaI <= 10) {
+      else if (distanciaI <= 20) {
         Serial.print('X');
         Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       }
@@ -132,11 +132,11 @@ void loop() {
             Serial.println("Error en or.");
           break;
       }
-      if (distanciaD > 10) {
+      if (distanciaD > 20) {
         Serial.print('0');
         Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       } 
-      else if (distanciaD <= 10) {
+      else if (distanciaD <= 20) {
         Serial.print('X');
         Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       }
@@ -184,7 +184,7 @@ void loop() {
           //girar derecha (incluyendo cambio de orientación)
       }*/
 
-      if (distanciaI > 10) {
+      if (distanciaI > 20) {
         girar_i();
         delay(500);
         av_cuadrado();
@@ -194,10 +194,10 @@ void loop() {
           delay(500);
           girar_d();
           delay(500);
-          if(distanciaD > 10){
+          if(distanciaD > 20){
             girar_d();
           }
-          else if(distanciaI > 10){
+          else if(distanciaI > 20){
            girar_i();
           }
         }
@@ -207,35 +207,35 @@ void loop() {
           delay(500);
           girar_d();
           delay(500);
-          if(distanciaF > 10){
+          if(distanciaF > 20){
            av_cuadrado();
           }
-          else if(distanciaD > 10){
+          else if(distanciaD > 20){
             girar_d();
           }
         }
-      }else if (distanciaF > 10) {
+      }else if (distanciaF > 20) {
         av_cuadrado();
         if((coord[0]>x_size)||(coord[1]>y_size)){
           re_cuadrado();
-          if(distanciaD > 10){
+          if(distanciaD > 20){
             girar_d();
           }
-          else if(distanciaI > 10){
+          else if(distanciaI > 20){
            girar_i();
           }
         }
 
         if((coord[0]<0)||(coord[1]<0)){
           re_cuadrado();
-          if(distanciaD > 10){
+          if(distanciaD > 20){
            girar_d();
           }
-          else if(distanciaI > 10){
+          else if(distanciaI > 20){
             girar_i();
           }
         }
-      }else if (distanciaD > 10) {
+      }else if (distanciaD > 20) {
         girar_d();
         delay(500);
         av_cuadrado();
@@ -257,12 +257,12 @@ void loop() {
         }
       }else{
         //secuencia de marcha atrás 
-          while((distanciaI<=10) && (distanciaD <= 10)){
+          while((distanciaI<=20) && (distanciaD <= 20)){
             re_cuadrado();
             distanciaI=medirDistancia(echoI, trigI);
             distanciaD=medirDistancia(echoD, trigD);
           }
-          if(distanciaD > 10){
+          if(distanciaD > 20){
             girar_d();
             delay(500);
             av_cuadrado();
@@ -283,7 +283,7 @@ void loop() {
             av_cuadrado();
           }
          }
-          else if(distanciaI > 10){
+          else if(distanciaI > 20){
             girar_i();
             delay(500);
             av_cuadrado();
@@ -293,10 +293,10 @@ void loop() {
               delay(500);
               girar_d();
               delay(500);
-              if(distanciaD > 10){
+              if(distanciaD > 20){
               girar_d();
               }
-              else if(distanciaI > 10){
+              else if(distanciaI > 20){
                 girar_i();
             }
           }
@@ -306,10 +306,10 @@ void loop() {
               delay(500);
               girar_d();
               delay(500);
-              if(distanciaF > 10){
+              if(distanciaF > 20){
                 av_cuadrado();
               }
-              else if(distanciaD > 10){
+              else if(distanciaD > 20){
                 girar_d();
               }
             }
