@@ -20,9 +20,9 @@ long distanciaI;
 long distanciaD;
 int x_size = 49;
 int y_size = 49;
-int coord[] = {0, 0};
+int coord[2] = {0, 0};
 int orientation = 0;
-int coord_med[] = {0, 0};
+int coord_med[2] = {0, 0};
 long medirDistancia();
 unsigned long Tiempo;
 
@@ -70,11 +70,11 @@ void loop() {
             Serial.println("Error en or.");
           break;
       }
-      if (distanciaF > 20) {
+      if (distanciaF > 30) {
         Serial.print('0');
         Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       } 
-      else if (distanciaF <= 20) {
+      else if (distanciaF <= 30) {
         Serial.print('X');
         Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       }
@@ -83,7 +83,7 @@ void loop() {
       switch (orientation) {
           case 0:
             coord_med[0] = coord[0];
-            coord_med[1] = coord[1]+1;
+            coord_med[1] = coord[1]-1;
           break;
           case 1:
             coord_med[0] = coord[0]-1;
@@ -91,7 +91,7 @@ void loop() {
           break;
           case 2:
             coord_med[0] = coord[0];
-            coord_med[1] = coord[1]-1;
+            coord_med[1] = coord[1]+1;
           break;
           case 3:
             coord_med[0] = coord[0]+1;
@@ -101,11 +101,11 @@ void loop() {
             Serial.println("Error en or.");
           break;
       }
-      if (distanciaI > 20) {
+      if (distanciaI > 30) {
         Serial.print('0');
         Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       } 
-      else if (distanciaI <= 20) {
+      else if (distanciaI <= 30) {
         Serial.print('X');
         Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       }
@@ -114,7 +114,7 @@ void loop() {
       switch (orientation) {
           case 0:
             coord_med[0] = coord[0];
-            coord_med[1] = coord[1]-1;
+            coord_med[1] = coord[1]+1;
           break;
           case 1:
             coord_med[0] = coord[0]+1;
@@ -122,7 +122,7 @@ void loop() {
           break;
           case 2:
             coord_med[0] = coord[0];
-            coord_med[1] = coord[1]+1;
+            coord_med[1] = coord[1]-1;
           break;
           case 3:
             coord_med[0] = coord[0]-1;
@@ -132,11 +132,11 @@ void loop() {
             Serial.println("Error en or.");
           break;
       }
-      if (distanciaD > 20) {
+      if (distanciaD > 30) {
         Serial.print('0');
         Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       } 
-      else if (distanciaD <= 20) {
+      else if (distanciaD <= 30) {
         Serial.print('X');
         Serial.write((uint8_t*)coord_med, sizeof(coord_med));
       }
@@ -184,7 +184,7 @@ void loop() {
           //girar derecha (incluyendo cambio de orientación)
       }*/
 
-      if (distanciaI > 20) {
+      if (distanciaI > 30) {
         girar_i();
         delay(500);
         av_cuadrado();
@@ -194,10 +194,10 @@ void loop() {
           delay(500);
           girar_d();
           delay(500);
-          if(distanciaD > 20){
+          if(distanciaD > 30){
             girar_d();
           }
-          else if(distanciaI > 20){
+          else if(distanciaI > 30){
            girar_i();
           }
         }
@@ -207,35 +207,35 @@ void loop() {
           delay(500);
           girar_d();
           delay(500);
-          if(distanciaF > 20){
+          if(distanciaF > 30){
            av_cuadrado();
           }
-          else if(distanciaD > 20){
+          else if(distanciaD > 30){
             girar_d();
           }
         }
-      }else if (distanciaF > 20) {
+      }else if (distanciaF > 30) {
         av_cuadrado();
         if((coord[0]>x_size)||(coord[1]>y_size)){
           re_cuadrado();
-          if(distanciaD > 20){
+          if(distanciaD > 30){
             girar_d();
           }
-          else if(distanciaI > 20){
+          else if(distanciaI > 30){
            girar_i();
           }
         }
 
         if((coord[0]<0)||(coord[1]<0)){
           re_cuadrado();
-          if(distanciaD > 20){
+          if(distanciaD > 30){
            girar_d();
           }
-          else if(distanciaI > 20){
+          else if(distanciaI > 30){
             girar_i();
           }
         }
-      }else if (distanciaD > 20) {
+      }else if (distanciaD > 30) {
         girar_d();
         delay(500);
         av_cuadrado();
@@ -257,12 +257,13 @@ void loop() {
         }
       }else{
         //secuencia de marcha atrás 
-          while((distanciaI<=20) && (distanciaD <= 20)){
+          while((distanciaI<=30) && (distanciaD <= 30)){
             re_cuadrado();
             distanciaI=medirDistancia(echoI, trigI);
             distanciaD=medirDistancia(echoD, trigD);
+            delay(500);
           }
-          if(distanciaD > 20){
+          if(distanciaD > 30){
             girar_d();
             delay(500);
             av_cuadrado();
@@ -283,7 +284,7 @@ void loop() {
             av_cuadrado();
           }
          }
-          else if(distanciaI > 20){
+          else if(distanciaI > 30){
             girar_i();
             delay(500);
             av_cuadrado();
@@ -293,10 +294,10 @@ void loop() {
               delay(500);
               girar_d();
               delay(500);
-              if(distanciaD > 20){
+              if(distanciaD > 30){
               girar_d();
               }
-              else if(distanciaI > 20){
+              else if(distanciaI > 30){
                 girar_i();
             }
           }
@@ -306,10 +307,10 @@ void loop() {
               delay(500);
               girar_d();
               delay(500);
-              if(distanciaF > 20){
+              if(distanciaF > 30){
                 av_cuadrado();
               }
-              else if(distanciaD > 20){
+              else if(distanciaD > 30){
                 girar_d();
               }
             }
